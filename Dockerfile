@@ -10,6 +10,7 @@ COPY Gemfile /household_account_book/Gemfile
 COPY Gemfile.lock /household_account_book/Gemfile.lock
 RUN bundle install
 COPY . /household_account_book
+ENV TZ Asia/Tokyo
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
