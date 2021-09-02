@@ -9,8 +9,8 @@ class CategoriesController < ApplicationController
     if @category.save
       redirect_to categories_path, flash: { category_notice: "カテゴリーの登録が完了しました" }
     else
-      flash.now[:category_alert] = "カテゴリーの登録に失敗しました"
-      render "index"
+      @categories = Category.all
+      render "index", collection: @categories
     end
   end
 
@@ -19,8 +19,8 @@ class CategoriesController < ApplicationController
     if category.update(category_params)
       redirect_to categories_path, flash: { category_notice: "カテゴリーの更新が完了しました" }
     else
-      flash.now[:category_alert] = "カテゴリーの更新に失敗しました"
-      render "index"
+      @categories = Category.all
+      render "index", collection: @categories
     end
   end
 
