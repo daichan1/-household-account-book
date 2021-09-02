@@ -1,9 +1,5 @@
 <h1>収支登録</h1>
 
-<% if flash[:income_and_expenditures_alert] %>
-  <p class="alert alert-danger" role="alert"><%= flash[:income_and_expenditures_alert] %></p>
-<% end %>
-
 <%= link_to "一覧画面に戻る", income_and_expenditures_path, class: "btn btn-secondary mb-3" %>
 
 <%= form_with model: @income_and_expenditure, class: "card card-body", local: true do |form| %>
