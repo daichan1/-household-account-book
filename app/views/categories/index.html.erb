@@ -3,9 +3,6 @@
 <% if flash[:category_notice] %>
   <p class="alert alert-primary" role="alert"><%= flash[:category_notice] %></p>
 <% end %>
-<% if flash[:category_alert] %>
-  <p class="alert alert-danger" role="alert"><%= flash[:category_alert] %></p>
-<% end %>
 
 <div class="text-end mb-3">
   <button type="button" class="btn btn-primary" id="newButton">新規作成</button>
@@ -13,11 +10,11 @@
 <%= form_with model: @category, class: "card card-body mb-3 d-none", id: "newCategory", local: true do |form| %>
   <div class="row">
     <div class="col-sm-6">
-      <%= form.text_field :name, class: "form-control", placeholder: "カテゴリー名を入力してください" %>
+      <%= form.text_field :name, class: "form-control", id: "newText", placeholder: "カテゴリー名を入力してください" %>
     </div>
     <div class="col-sm-6 text-end">
       <button type="button" class="btn btn-secondary me-3" id="newCancel">キャンセル</button>
-      <%= form.submit "追加", class: "btn btn-primary" %>
+      <%= form.submit "追加", class: "btn btn-primary", id: "newSubmit", disabled: true %>
     </div>
   </div>
 <% end %>
@@ -32,24 +29,24 @@
     </div>
   </div>
   <div class="card-body">
-    <%@categories.each do |category| %>
+    <% @categories.each_with_index do |category, index| %>
       <div class="row d-flex justify-content-between mb-3">
         <div class="col-sm-3"><%= category.name %></div>
         <div class="col-sm-3"><%= category.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></div>
         <div class="col-sm-3"><%= category.updated_at.strftime("%Y年%m月%d日 %H:%M:%S") %></div>
         <div class="col-sm-3">
-          <button type="button" class="btn btn-secondary me-3" id="editButton<%= category.id %>">編集</button>
+          <button type="button" class="btn btn-secondary me-3" id="editButton<%= index + 1 %>">編集</button>
           <%= link_to "削除", category_path(category), method: :delete, class: "btn btn-danger", data: { confirm: "削除してもよろしいですか？" } %>
         </div>
       </div>
-      <%= form_with model: category, class: "card card-body mb-3 d-none", id: "editCategory#{category.id}", local: true do |form| %>
+      <%= form_with model: category, class: "card card-body mb-3 d-none", id: "editCategory#{index + 1}", local: true do |form| %>
         <div class="row">
           <div class="col-sm-8">
-            <%= form.text_field :name, class: "form-control", value: category.name %>
+            <%= form.text_field :name, class: "form-control", id: "editText#{index + 1}", value: category.name %>
           </div>
           <div class="col-sm-4 text-center">
-            <button type="button" class="btn btn-secondary me-3" id="editCancel<%= category.id %>">キャンセル</button>
-            <%= form.submit "更新", class: "btn btn-primary" %>
+            <button type="button" class="btn btn-secondary me-3" id="editCancel<%= index + 1 %>">キャンセル</button>
+            <%= form.submit "更新", class: "btn btn-primary", id: "editSubmit#{index + 1}" %>
           </div>
         </div>
       <% end %>
