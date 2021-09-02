@@ -1,0 +1,6 @@
+ja:
+  activerecord:
+    attributes:
+      income_and_expenditure:
+        name: 名前
+        price: 価格

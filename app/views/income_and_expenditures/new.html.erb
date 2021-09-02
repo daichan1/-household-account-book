@@ -1,0 +1,25 @@
+<h1>収支登録</h1>
+
+<%= link_to "一覧画面に戻る", income_and_expenditures_path, class: "btn btn-secondary mb-3" %>
+
+<%= form_with model: @income_and_expenditure, class: "card card-body", local: true do |form| %>
+  <%= render "layouts/error_messages", model: form.object %>
+  <div class="row">
+    <div class="col-sm-6">
+      <%= form.select :is_income_and_expenditure, [["支出", "expenditure"],["収入", "income"]], {}, class: "form-control mb-4" %>
+    </div>
+    <div class="col-sm-6">
+      <%= form.select :category_id, @categories.map { |category| [category.name, category.id] }, {}, class: "form-control" %>
+    </div>
+  </div>
+  <%= form.text_field :name, class: "form-control mb-4", placeholder: "内容を入力してください" %>
+  <div class="row">
+    <div class="col-sm-6">
+      <%= form.number_field :price, class: "form-control mb-4" %>
+    </div>
+  </div>
+  <%= form.hidden_field :user_id, value: current_user.id  %>
+  <div class="text-end">
+    <%= form.submit "追加", class: "btn btn-primary" %>
+  </div>
+<% end %>
