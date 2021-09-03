@@ -28,6 +28,9 @@ class IncomeAndExpendituresController < ApplicationController
   end
 
   def destroy
+    income_and_expenditure = IncomeAndExpenditure.find(params[:id])
+    income_and_expenditure.destroy
+    redirect_to income_and_expenditures_path, flash: { income_and_expenditures_notice: "収支の削除が完了しました" }
   end
 
   private
