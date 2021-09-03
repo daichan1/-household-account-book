@@ -1,0 +1,5 @@
+<h1>収支編集</h1>
+
+<%= link_to "一覧画面に戻る", income_and_expenditures_path, class: "btn btn-secondary mb-3" %>
+
+<%= render "form", { income_and_expenditure: @income_and_expenditure, categories: @categories, submit_str: "更新" } %>
