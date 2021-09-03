@@ -1,5 +1,6 @@
 class IncomeAndExpendituresController < ApplicationController
   def index
+    @income_and_expenditures = IncomeAndExpenditure.all.recent
   end
 
   def show

@@ -6,4 +6,6 @@ class IncomeAndExpenditure < ApplicationRecord
 
   validates :name, presence: true
   validates :price, presence: true
+
+  scope :recent, -> { order(updated_at: :desc) }
 end

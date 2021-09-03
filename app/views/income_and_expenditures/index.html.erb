@@ -1,6 +1,34 @@
-<h1>IncomeAndExpenditures#index</h1>
-<p>Find me in app/views/income_and_expenditures/index.html.erb</p>
+<h1>収支一覧</h1>
 
 <% if flash[:income_and_expenditures_notice] %>
   <p class="alert alert-primary" role="alert"><%= flash[:income_and_expenditures_notice] %></p>
 <% end %>
+
+<div class="text-end">
+  <%= link_to "新規作成へ", new_income_and_expenditure_path, class: "btn btn-secondary mb-3" %>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">名前</th>
+      <th scope="col">価格(円)</th>
+      <th scope="col">カテゴリー</th>
+      <th scope="col">収支区分</th>
+      <th scope="col">作成日時</th>
+      <th scope="col">更新日時</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @income_and_expenditures.each do |income_and_expenditure| %>
+      <tr>
+        <th scope="row"><%= income_and_expenditure.name  %></th>
+        <td><%= income_and_expenditure.price.to_s(:delimited) %></td>
+        <td><%= income_and_expenditure.category.name %></td>
+        <td><%= display_income_and_expenditure(income_and_expenditure.is_income_and_expenditure) %></td>
+        <td><%= income_and_expenditure.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></td>
+        <td><%= income_and_expenditure.updated_at.strftime("%Y年%m月%d日 %H:%M:%S") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
