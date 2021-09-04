@@ -8,6 +8,15 @@
   <%= link_to "新規作成へ", new_income_and_expenditure_path, class: "btn btn-secondary mb-3" %>
 </div>
 
+<div class="row">
+  <div class="col-sm-6">
+    <%= pie_chart @income_chart %>
+  </div>
+  <div class="col-sm-6">
+    <%= pie_chart @expenditure_chart %>
+  </div>
+</div>
+
 <table class="table">
   <thead>
     <tr>

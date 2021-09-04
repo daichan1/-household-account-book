@@ -8,4 +8,12 @@ class IncomeAndExpenditure < ApplicationRecord
   validates :price, presence: true
 
   scope :recent, -> { order(updated_at: :desc) }
+
+  def self.income_and_expenditure_chart_data(data)
+    result = {}
+    data.each do |datum|
+      result.store(datum.category.name, datum.price)
+    end
+    return result
+  end
 end
