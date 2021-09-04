@@ -4,8 +4,9 @@
   <p class="alert alert-primary" role="alert"><%= flash[:income_and_expenditures_notice] %></p>
 <% end %>
 
-<div class="text-end">
-  <%= link_to "新規作成へ", new_income_and_expenditure_path, class: "btn btn-secondary mb-3" %>
+<div class="text-end mb-3">
+  <%= link_to "新規作成へ", new_income_and_expenditure_path, class: "btn btn-secondary" %>
+  <%= link_to "カテゴリー追加", categories_path, data: {"turbolinks" => false}, class: "btn btn-secondary" %>
 </div>
 
 <ul class="nav nav-pills nav-justified mb-5" id="pills-tab" role="tablist">
