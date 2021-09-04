@@ -1,8 +1,9 @@
 class IncomeAndExpendituresController < ApplicationController
   def index
-    @income_and_expenditures = IncomeAndExpenditure.all.recent
-    @income_chart = IncomeAndExpenditure.income_and_expenditure_chart_data(IncomeAndExpenditure.income)
-    @expenditure_chart = IncomeAndExpenditure.income_and_expenditure_chart_data(IncomeAndExpenditure.expenditure)
+    @incomes = IncomeAndExpenditure.income.recent
+    @expenditures = IncomeAndExpenditure.expenditure.recent
+    @income_chart = IncomeAndExpenditure.income_and_expenditure_chart_data(@incomes)
+    @expenditure_chart = IncomeAndExpenditure.income_and_expenditure_chart_data(@expenditures)
   end
 
   def show

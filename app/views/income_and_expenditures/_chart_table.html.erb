@@ -1,0 +1,35 @@
+<div class="row mb-5">
+  <div class="col-sm-12">
+    <%= pie_chart chart %>
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">名前</th>
+      <th scope="col">価格(円)</th>
+      <th scope="col">カテゴリー</th>
+      <th scope="col">収支区分</th>
+      <th scope="col">作成日時</th>
+      <th scope="col">更新日時</th>
+      <th scope="col">各種ボタン</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% objects.each do |object| %>
+      <tr>
+        <th scope="row"><%= object.name  %></th>
+        <td><%= object.price.to_s(:delimited) %></td>
+        <td><%= object.category.name %></td>
+        <td><%= display_income_and_expenditure(object.is_income_and_expenditure) %></td>
+        <td><%= object.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></td>
+        <td><%= object.updated_at.strftime("%Y年%m月%d日 %H:%M:%S") %></td>
+        <td>
+          <%= link_to "編集", edit_income_and_expenditure_path(object), class: "btn btn-secondary" %>
+          <%= link_to "削除", income_and_expenditure_path(object), method: :delete, class: "btn btn-danger", data: { confirm: "削除してもよろしいですか？" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
