@@ -1,5 +1,8 @@
 <h1>収支登録</h1>
 
-<%= link_to "一覧画面に戻る", income_and_expenditures_path, class: "btn btn-secondary mb-3" %>
+<div class="d-flex justify-content-between mb-3">
+  <%= link_to "一覧画面に戻る", income_and_expenditures_path, class: "btn btn-secondary" %>
+  <%= link_to "カテゴリー追加", categories_path, data: {"turbolinks" => false}, class: "btn btn-secondary" %>
+</div>
 
 <%= render "form", { income_and_expenditure: @income_and_expenditure, categories: @categories, submit_str: "追加" } %>
