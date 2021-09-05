@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :income_and_expenditures
+  has_many :categories
 end

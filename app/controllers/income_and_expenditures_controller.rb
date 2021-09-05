@@ -48,6 +48,6 @@ class IncomeAndExpendituresController < ApplicationController
   private
 
   def income_and_expenditures_params
-    params.require(:income_and_expenditure).permit(:is_income_and_expenditure, :name, :price, :category_id, :user_id)
+    params.require(:income_and_expenditure).permit(:is_income_and_expenditure, :name, :price, :category_id).merge(user_id: current_user.id)
   end
 end

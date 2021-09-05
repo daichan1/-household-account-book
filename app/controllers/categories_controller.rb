@@ -33,6 +33,6 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name).merge(user_id: current_user.id)
   end
 end
