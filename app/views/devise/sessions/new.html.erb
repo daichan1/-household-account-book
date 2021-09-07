@@ -1,12 +1,12 @@
-<div class="login-form">
+<div class="user-form">
   <%= form_with model: @user, url: user_session_path, local: true, class: "card card-body text-center" do |form| %>
     <h2 class="mb-3">ログイン</h2>
     <div>
-      <%= form.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "form-control form-input" %>
+      <%= form.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "form-control user-form-input" %>
     </div>
 
     <div class="mb-3">
-      <%= form.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "form-control form-input" %>
+      <%= form.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "form-control user-form-input" %>
     </div>
 
     <% if devise_mapping.rememberable? %>
